@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Duel\Http\Resources;
+namespace App\Modules\User\Http\Resources;
 
 use App\Modules\Cards\App\Collection\CardsCollection;
 use App\Modules\Cards\App\Contracts\CardsFacadeInterface;
@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\App;
 
-class DuelUserDataResource extends JsonResource
+class UserDataResource extends JsonResource
 {
     public function toArray(Request $request): array
     {

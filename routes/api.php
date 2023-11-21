@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\Authorization\LoginController;
 use App\Modules\Duel\Http\Controllers\DuelsController;
-use App\Modules\Duel\Http\Controllers\DuelUserDataController;
+use App\Modules\User\Http\Controllers\UserDataController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Authorization\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 
     //USER DATA
-    Route::get('user-data',[DuelUserDataController::class, 'userData']);
+    Route::get('user-data',[UserDataController::class, 'userData']);
 //    Route::get('user-data', function (Request $request) {
 //        return [
 //            'id' => 1,
