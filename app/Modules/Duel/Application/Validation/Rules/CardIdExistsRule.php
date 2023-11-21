@@ -16,7 +16,7 @@ class CardIdExistsRule implements ValidationRule
     {
         if (
             false === App::make(CardsFacadeInterface::class)
-                ->exists(id: $value)
+                ->exists(id: (int)$value)
         ) {
             $fail(sprintf('Card ID: %s don\'t exists.', $value));
         }

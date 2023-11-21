@@ -18,13 +18,13 @@ class CardsFacade implements CardsFacadeInterface
         $this->cardsToCollection();
     }
 
-    public function exists($id): bool
+    public function exists(int $id): bool
     {
         return null !== $this->find(id: $id);
     }
     
     
-    public function find($id): ?CardDto
+    public function find(int $id): ?CardDto
     {
         return $this->cards->firstWhere('id','=',$id);
     }

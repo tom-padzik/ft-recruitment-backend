@@ -9,7 +9,7 @@ use App\Modules\Cards\App\Dto\CardDto;
 
 interface CardsFacadeInterface
 {
-    public function exists($id): bool;
-    public function find($id): ?CardDto;
+    public function exists(int $id): bool;
+    public function find(int $id): ?CardDto;
     public function all(): CardsCollection;
 }
