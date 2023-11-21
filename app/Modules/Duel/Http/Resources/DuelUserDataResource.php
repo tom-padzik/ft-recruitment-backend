@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\App;
 
-class UserDataResource extends JsonResource
+class DuelUserDataResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
