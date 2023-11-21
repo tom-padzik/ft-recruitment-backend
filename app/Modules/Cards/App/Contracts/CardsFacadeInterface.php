@@ -12,4 +12,5 @@ interface CardsFacadeInterface
     public function exists(int $id): bool;
     public function find(int $id): ?CardDto;
     public function all(): CardsCollection;
+    public function findIds(array $ids): CardsCollection;
 }

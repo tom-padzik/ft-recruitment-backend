@@ -43,4 +43,9 @@ class CardsFacade implements CardsFacadeInterface
             $this->cards->push($mapper->fromArray(card: $card));
         }
     }
+
+    public function findIds(array $ids): CardsCollection
+    {
+        return $this->cards->whereIn('id', $ids);
+    }
 }
