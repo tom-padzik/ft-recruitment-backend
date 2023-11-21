@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Modules\Cards\Application;
 
 use App\Modules\Cards\App\Collection\CardsCollection;
+use App\Modules\Cards\App\Contracts\CardsFacadeInterface;
 use App\Modules\Cards\App\Dto\CardDto;
 use Illuminate\Support\Facades\Config;
 
-class CardsFacade
+class CardsFacade implements CardsFacadeInterface
 {
     private CardsCollection $cards;
     
