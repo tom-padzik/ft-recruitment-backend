@@ -15,12 +15,15 @@ use Illuminate\Foundation\Http\FormRequest;
 //    "clickable": true
 //}
 
+/**
+ * @property int $id
+ */
 class DuelActionRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'id' => ['required', new CardIdExistsRule()],
+            'id' => ['required', 'integer', new CardIdExistsRule()],
         ];
     }
 }

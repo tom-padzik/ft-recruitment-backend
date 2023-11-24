@@ -169,8 +169,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         
-        //
+        // game related
         App\Modules\Cards\Providers\CardsFacadeProvider::class,
+        App\Modules\Duel\Providers\DuelFacadesProvider::class,
     ])->toArray(),
 
     /*

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Api\Authorization\LoginController;
 use App\Modules\Duel\Http\Controllers\DuelsController;
-use App\Modules\User\Http\Controllers\UserDataController;
+use App\Modules\Duel\Http\Controllers\DuelUserDataController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -77,12 +77,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 //    });
 
     //CARDS
-    Route::post('cards', function (Request $request) {
-        return response()->json();
-    });
+    Route::post('cards', [DuelsController::class, 'cards']);
+//    Route::post('cards', function (Request $request) {
+//        return response()->json();
+//    });
 
     //USER DATA
-    Route::get('user-data',[UserDataController::class, 'userData']);
+    Route::get('user-data',[DuelUserDataController::class, 'userData']);
 //    Route::get('user-data', function (Request $request) {
 //        return [
 //            'id' => 1,

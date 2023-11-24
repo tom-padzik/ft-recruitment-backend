@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 namespace App\Modules\Duel\Application\Validation\Rules;
-use App\Modules\Cards\App\Contracts\CardsFacadeInterface;
+
+use App\Modules\Cards\Api\Contracts\CardsFacadeInterface;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\App;
@@ -18,7 +19,12 @@ class CardIdExistsRule implements ValidationRule
             false === App::make(CardsFacadeInterface::class)
                 ->exists(id: (int)$value)
         ) {
-            $fail(sprintf('Card ID: %s don\'t exists.', $value));
+            $fail(
+                sprintf(
+                    'Card ID: %s don\'t exists.',
+                    $value,
+                ),
+            );
         }
     }
 }
