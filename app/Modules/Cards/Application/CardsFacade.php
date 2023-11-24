@@ -22,12 +22,12 @@ class CardsFacade implements CardsFacadeInterface
     {
         return null !== $this->find(id: $id);
     }
-    
+
     public function find(int $id): ?CardDto
     {
         return $this->cloneCards()->firstWhere('id', '=', $id);
     }
-    
+
     public function all(): CardsDtoCollection
     {
         return $this->cloneCards();

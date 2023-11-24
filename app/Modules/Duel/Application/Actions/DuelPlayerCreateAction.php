@@ -33,7 +33,7 @@ readonly class DuelPlayerCreateAction
         $this->playerSaveAction->execute($player);
         
         $user->refresh();
-        
+
         return $player;
     }
 }

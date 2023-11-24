@@ -20,8 +20,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 
-
 use function sprintf;
+
 
 readonly class DuelFacade implements DuelFacadeInterface
 {
@@ -39,12 +39,12 @@ readonly class DuelFacade implements DuelFacadeInterface
         $duel = $this->forUserQuery($user)
             ->whereNull('finished_at')
             ->first();
-        
+
         return null === $duel
             ? null
             : $this->duelDtoMapper->fromDuel(duel: $duel);
     }
-    
+
     public function findActiveForUserOrFail(User $user): DuelDto
     {
         /** @var Duel $duel */
@@ -60,13 +60,13 @@ readonly class DuelFacade implements DuelFacadeInterface
         /** @var Duel|null $duel */
         $duel = $this->forUserQuery(user: $user)
             ->whereNotNull('finished_at')
-            ->orderBy('finished_at','desc')
+            ->orderBy('finished_at', 'desc')
             ->first();
-        
-        if(null === $duel) {
+
+        if (null === $duel) {
             return null;
         }
-        
+
         return $this->duelDtoMapper->fromDuel(duel: $duel);
     }
 
@@ -101,34 +101,34 @@ readonly class DuelFacade implements DuelFacadeInterface
     public function finishDuel(Duel $duel): DuelDto
     {
         $duelDto = $this->duelDtoMapper->fromDuel($duel);
-        if(null !== $duel->finished_at) {
+        if (null !== $duel->finished_at) {
             return $duelDto;
         }
         $duel->finished_at = Carbon::now();
         $this->duelSaveAction->execute(duel: $duel);
-        
+
         if ($this->isWon(duelDto: $duelDto)) {
             $player = $duel->player;
             $player->points += Config::get('game.definitions.won_points');
-            
+
             $this->setPlayerLevel($player);
-            
+
             $this->playerSaveAction->execute(player: $player);
         }
-        
-        return $this->duelDtoMapper->fromDuel(duel: $duel); 
+
+        return $this->duelDtoMapper->fromDuel(duel: $duel);
     }
-    
+
     public function isWon(DuelDto $duelDto): bool
     {
-        return  $this->cardsFacade->sumCardsPower(
-            cards: $duelDto->userPlayedCardsCollection
+        return $this->cardsFacade->sumCardsPower(
+                cards: $duelDto->userPlayedCardsCollection,
             )
             > $this->cardsFacade->sumCardsPower(
-                cards: $duelDto->opponentPlayedCardsCollection
+                cards: $duelDto->opponentPlayedCardsCollection,
             );
     }
-    
+
     public function findOrFail(int $id): Duel
     {
         return Duel::query()->findOrFail($id);
@@ -146,11 +146,13 @@ readonly class DuelFacade implements DuelFacadeInterface
 
     private function setPlayerLevel(DuelPlayer $player): void
     {
-        if(
+        if (
             $player->level < Config::get('game.definitions.levels.max_level')
             && $player->points >= Config::get(
                 sprintf(
-                    'game.definitions.levels.next_level_points.%s',$player->level)
+                    'game.definitions.levels.next_level_points.%s',
+                    $player->level,
+                ),
             )
         ) {
             $player->level++;

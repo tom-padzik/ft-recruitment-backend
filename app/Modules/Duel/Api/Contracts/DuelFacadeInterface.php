@@ -16,11 +16,11 @@ interface DuelFacadeInterface
     public function findActiveForUserOrFail(User $user): DuelDto;
 
     public function findLastFinishedForUser(User $user): ?DuelDto;
-    
+
     public function findAllFinishedForUser(User $user): DuelDtoCollection;
 
     public function createPlayerIfNotExists(User $user): void;
-    
+
     public function finishDuel(Duel $duel): DuelDto;
 
     public function isWon(DuelDto $duelDto): bool;

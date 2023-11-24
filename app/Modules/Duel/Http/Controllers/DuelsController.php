@@ -31,12 +31,12 @@ class DuelsController extends Controller
     ) {
     }
 
-    public function index(Request $request) : Collection
+    public function index(Request $request): Collection
     {
         $duels = $this->duelFacade->findAllFinishedForUser(
-            user: $request->user()
+            user: $request->user(),
         );
-        if($duels->isEmpty()) {
+        if ($duels->isEmpty()) {
             return $duels;
         }
         return UserDuelDtoResource::collection($duels)->collection;
@@ -65,7 +65,7 @@ class DuelsController extends Controller
     public function action(DuelActionRequest $request): JsonResponse
     {
         return Response::json(
-            $this->actionAction->execute(request: $request)
+            $this->actionAction->execute(request: $request),
         );
     }
 }

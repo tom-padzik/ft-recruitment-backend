@@ -19,10 +19,10 @@ class DuelActiveResource extends JsonResource
 
     public function toArray(Request $request): array
     {
-        if(null === $this->resource) {
+        if (null === $this->resource) {
             return [];
         }
-        
+
         $cardsFacade = App::make(CardsFacadeInterface::class);
 
         return [

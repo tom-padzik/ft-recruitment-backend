@@ -10,7 +10,7 @@ use App\Modules\Duel\Application\Dto\DuelDto;
 
 readonly class DuelActiveAction
 {
-    
+
     public function __construct(
         private DuelFacadeInterface $duelFacade,
     ) {

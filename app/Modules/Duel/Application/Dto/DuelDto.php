@@ -22,7 +22,7 @@ class DuelDto
         public CardsDtoCollection $opponentCardsCollection,
         public CardsDtoCollection $opponentPlayedCardsCollection,
         public Carbon $createdAt,
-        public ?Carbon $finishedAt = null,     
+        public ?Carbon $finishedAt = null,
     ) {
     }
 

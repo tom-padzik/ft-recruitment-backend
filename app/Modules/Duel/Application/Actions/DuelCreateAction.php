@@ -10,7 +10,6 @@ use App\Modules\Duel\Application\Dto\DuelDto;
 use App\Modules\Duel\Application\Mappers\DuelDtoMapper;
 use App\Modules\Duel\Models\Duel;
 use App\Modules\Duel\Models\DuelPlayer;
-
 use Illuminate\Support\Facades\Config;
 
 use function fake;
@@ -49,12 +48,12 @@ readonly class DuelCreateAction
     {
         return $user->duelPlayer ?? $this->playerCreateAction->execute($user);
     }
-    
+
     private function opponentCardsIds(DuelPlayer $player): array
     {
         $count = Config::get(
-            sprintf('game.definitions.levels.max_cards.%s',$player->level)
+            sprintf('game.definitions.levels.max_cards.%s', $player->level),
         );
-        return $this->cardsFacade->all()->random($count)->pluck('id')->values()->toArray(); 
+        return $this->cardsFacade->all()->random($count)->pluck('id')->values()->toArray();
     }
 }

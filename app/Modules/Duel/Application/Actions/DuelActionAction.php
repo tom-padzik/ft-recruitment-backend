@@ -26,21 +26,21 @@ readonly class DuelActionAction
     public function execute(DuelActionRequest $request): ?CardDto
     {
         $maxRound = Config::get('game.definitions.levels.rounds');
-        
+
         $duelDto = $this->duelFacade
             ->findActiveForUserOrFail(user: $request->user());
-        
+
         $duel = $this->duelFacade->findOrFail($duelDto->getKey());
-        
+
         $this->serPlayerCard(duel: $duel, cardId: $request->id);
         $opponentCard = $this->setOpponentCard(duel: $duel);
         $nextRound = $duel->round + 1;
-        if($nextRound <= $maxRound) {
+        if ($nextRound <= $maxRound) {
             $duel->round = $nextRound;
         }
         $this->saveAction->execute($duel);
 
-        if($nextRound > Config::get('game.definitions.levels.rounds')) {
+        if ($nextRound > Config::get('game.definitions.levels.rounds')) {
             $this->duelFacade->finishDuel($duel);
         }
 
