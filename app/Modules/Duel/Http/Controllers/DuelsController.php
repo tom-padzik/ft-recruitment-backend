@@ -64,10 +64,8 @@ class DuelsController extends Controller
 
     public function action(DuelActionRequest $request): JsonResponse
     {
-        $opponentCard = $this->actionAction->execute(request: $request);
-        if (null === $opponentCard) {
-            // @todo finish
-        }
-        return Response::json($opponentCard);
+        return Response::json(
+            $this->actionAction->execute(request: $request)
+        );
     }
 }

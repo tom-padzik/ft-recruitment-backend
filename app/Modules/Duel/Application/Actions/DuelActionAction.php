@@ -10,7 +10,6 @@ use App\Modules\Duel\Api\Contracts\DuelFacadeInterface;
 use App\Modules\Duel\Api\Exceptions\CardAlreadyUsedException;
 use App\Modules\Duel\Http\Requests\DuelActionRequest;
 use App\Modules\Duel\Models\Duel;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 
 use function in_array;
